@@ -1,5 +1,6 @@
 module Carrierwave
   module Crop
-    VERSION = "0.0.3.alpha"
+    class Engine < ::Rails::Engine
+    end
   end
 end
