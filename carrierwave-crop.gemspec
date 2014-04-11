@@ -1,4 +1,5 @@
 # coding: utf-8
+require '../lib/carrierwave/crop/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "carrierwave-crop"
