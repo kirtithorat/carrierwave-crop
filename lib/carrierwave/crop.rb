@@ -1,12 +1,8 @@
 require "carrierwave"
 require "carrierwave/crop/version"
 require "carrierwave/crop/model_additions"
-require 'carrierwave/crop/engine' if defined? Rails
-require "carrierwave/crop/railtie" if defined? Rails
-require 'carrierwave/crop/helpers' if defined? Rails
-
-module Carrierwave
-  module Crop
- 
-  end
+if defined? Rails
+  require 'carrierwave/crop/engine'
+  require "carrierwave/crop/railtie"
+  require 'carrierwave/crop/helpers'
 end
