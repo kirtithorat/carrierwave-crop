@@ -4,6 +4,7 @@ module Carrierwave
 
       module ClassMethods
 
+        ## Adding dynamic attribute accessors
         def crop_uploaded(attachment)
 
           [:crop_x, :crop_y, :crop_w, :crop_h].each do |a|
