@@ -7,6 +7,6 @@ class CropperGenerator < Rails::Generators::NamedBase
            :banner => "attachment_name"
 
   def create_cropper_file
-    template "carrierwave_cropper.js.coffee", File.join('app/assets/javascripts', class_path, "#{file_name}_cropper.js.coffee")
+    template "carrierwave_cropper.js.coffee", File.join('app/assets/javascripts', class_path, "#{file_name.pluralize}.js.coffee")
   end
 end
