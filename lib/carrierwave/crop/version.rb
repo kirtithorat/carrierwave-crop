@@ -1,5 +1,5 @@
 module Carrierwave
   module Crop
-    VERSION = "0.0.6.alpha"
+    VERSION = "0.0.7.alpha"
   end
 end
