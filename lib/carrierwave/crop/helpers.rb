@@ -29,8 +29,8 @@ module Carrierwave
 
 
         if(self.object.send(attachment).class.ancestors.include? CarrierWave::Uploader::Base )
-          box  = self.text_field(:"#{attachment}_original_w", :value => original_width)
-          box << self.text_field(:"#{attachment}_original_h", :value => original_height)
+          box  = self.hidden_field(:"#{attachment}_original_w", :value => original_width)
+          box << self.hidden_field(:"#{attachment}_original_h", :value => original_height)
           [:crop_x, :crop_y, :crop_w, :crop_h].each do |attribute|
             box << self.hidden_field(:"#{attachment}_#{attribute}", id: "#{self.object.class.name.downcase}_#{attachment}_#{attribute}")
           end

@@ -55,15 +55,17 @@ module Carrierwave
 
     module Uploader
 
-      def crop
-        resize_to_limit(600, 600)
-        manipulate! do |img|
-          attachment = model.send(:attachment_field_name)
-          x = model.send("#{attachment}_crop_x").to_i
-          y = model.send("#{attachment}_crop_y").to_i
-          w = model.send("#{attachment}_crop_w").to_i
-          h = model.send("#{attachment}_crop_h").to_i
-          img.crop!(x, y, w, h)
+      def crop(attachment)
+        if model.cropping?(attachment)
+          resize_to_limit(600, 600)
+          manipulate! do |img|
+            attachment = model.send(:attachment_field_name)
+            x = model.send("#{attachment}_crop_x").to_i
+            y = model.send("#{attachment}_crop_y").to_i
+            w = model.send("#{attachment}_crop_w").to_i
+            h = model.send("#{attachment}_crop_h").to_i
+            img.crop!(x, y, w, h)
+          end
         end
       end
     end
