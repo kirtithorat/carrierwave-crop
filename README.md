@@ -4,7 +4,11 @@ Carrierwave extension to crop uploaded images using Jcrop plugin with preview.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Install the latest stable release:
+
+    $[sudo] gem install carrierwave
+
+In Rails, add it to your Gemfile:
 
     gem 'carrierwave-crop'
 
@@ -12,22 +16,28 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
+Finally, restart the server to apply the changes.
 
-    $ gem install carrierwave-crop
-
-## Usage
+## Getting Started
 
 Add the required files in assets
 
-In  application.js
+In  `application.js`
 
     //= require jquery
     //= require jquery.jcrop
 
-In  application.css
+In  `application.css`
 
     *= require jquery.jcrop
+
+Generate a coffeescript for cropping:
+
+    rails generate cropper user avatar
+
+ this should give you a file in:
+ 
+     app/assets/javascripts/users.js.coffee       
 
 ### Credits and resources
 * [Carrierwave](https://github.com/carrierwaveuploader/carrierwave)
