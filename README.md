@@ -1,4 +1,6 @@
-# Carrierwave::Crop
+# Carrierwave-Crop
+
+[![Build Status](https://travis-ci.org/kirtithorat/carrierwave-crop.svg?branch=master)](https://travis-ci.org/kirtithorat/carrierwave-crop)
 
 Carrierwave extension to crop uploaded images using Jcrop plugin with preview.
 
@@ -48,7 +50,7 @@ Open your model file and add the cropper:
        crop_uploaded :avatar  ## Add this
      end        
 
-Render a view after creating/updating a user, add a `crop` action in your controller. For example:
+Render a view after creating/updating a user, add a `crop` action in your `controller.` For example:
 
       def create
         @user = User.new(user_params)
@@ -56,7 +58,7 @@ Render a view after creating/updating a user, add a `crop` action in your contro
           if @user.save
             format.html {
               if params[:user][:avatar].present?
-                render :crop
+                render :crop  ## Render the view for cropping
               else
                 redirect_to @user, notice: 'User was successfully created.'
               end
@@ -68,6 +70,15 @@ Render a view after creating/updating a user, add a `crop` action in your contro
           end
         end
       end
+
+For `Rails 4.x`, whitelist the cropping attributes - `fieldname_crop_x`, `fieldname_crop_y`, `fieldname_crop_w`, `fieldname_crop_h`. 
+
+For example:
+
+  def user_params
+    params.require(:user).permit(:avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h, ....)
+  end
+
 
 Or just add a crop action, set a route for it:
 
@@ -87,7 +98,7 @@ In the carrierwave uploader, say `AvatarUploader`:
 
 Call process on the version you would like to be cropped:
 
-     ## If ONLY `thumb` version is to be cropped
+     ## If ONLY "thumb" version is to be cropped
      version :jumbo do
         resize_to_limit(600,600)
      end

@@ -17,8 +17,8 @@ class CarrierwaveCropper
     @updatePreview(coords)
 
   updatePreview: (coords) =>
-          $('#avatar_crop_preview').css
-                  width: Math.round(100/coords.w * $('#<%= file_name %>_<%= attachment_name %>_cropbox').width()) + 'px'
-                  height: Math.round(100/coords.h * $('#<%= file_name %>_<%= attachment_name %>_cropbox').height()) + 'px'
-                  marginLeft: '-' + Math.round(100/coords.w * coords.x) + 'px'
-                  marginTop: '-' + Math.round(100/coords.h * coords.y) + 'px'
+    $('#avatar_crop_preview').css
+      width: Math.round(100/coords.w * $('#<%= file_name %>_<%= attachment_name %>_cropbox').width()) + 'px'
+      height: Math.round(100/coords.h * $('#<%= file_name %>_<%= attachment_name %>_cropbox').height()) + 'px'
+      marginLeft: '-' + Math.round(100/coords.w * coords.x) + 'px'
+      marginTop: '-' + Math.round(100/coords.h * coords.y) + 'px'
