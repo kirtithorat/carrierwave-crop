@@ -69,13 +69,7 @@ Render a view after creating/updating a user, add a `crop` action in your `contr
             format.json { render json: @user.errors, status: :unprocessable_entity }
           end
         end
-      end
-
-Or just add a `crop` action, set a route for it:
-
-      def crop
-        @user = User.find(params[:id])
-      end      
+      end    
 
 For `Rails 4.x`, whitelist the cropping attributes - `fieldname_crop_x`, `fieldname_crop_y`, `fieldname_crop_w`, `fieldname_crop_h`. 
 
