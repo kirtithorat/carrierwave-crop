@@ -102,6 +102,9 @@ Call process on the version you would like to be cropped:
         resize_to_limit(100,100)
      end      
 
+
+**NOTE:** Currently works with `rmagick`.  Add `include CarrierWave::RMagick` in your carrierwave uploader say `AvatarUploader`.
+
 ### Credits and resources
 * [Carrierwave](https://github.com/carrierwaveuploader/carrierwave)
 * [Deep Liquid's JCrop](http://deepliquid.com/content/Jcrop.html)
