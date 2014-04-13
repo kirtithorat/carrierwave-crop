@@ -7,10 +7,9 @@ module Carrierwave
         ## Adding dynamic attribute accessors
         def crop_uploaded(attachment)
 
-          [:crop_x, :crop_y, :crop_w, :crop_h, :field_name].each do |a|
+          [:crop_x, :crop_y, :crop_w, :crop_h, :original_w, :original_h].each do |a|
             attr_accessor :"#{attachment}_#{a}"
           end
-          attr_accessor :attachment_field_name
           after_update :"recreate_#{attachment}_versions"
         end
       end
@@ -32,9 +31,7 @@ module Carrierwave
 
         def method_missing(method, *args)
           if method.to_s =~ /recreate_(\S{1,})_versions/
-            crop_image(
-              method.to_s.scan(/recreate_(\S{1,})_versions/).flatten.first.to_sym
-            )
+            crop_image(method.to_s.scan(/recreate_(\S{1,})_versions/).flatten.first.to_sym)
           else
             super
           end
@@ -42,11 +39,9 @@ module Carrierwave
 
         def crop_image(attachment)
           if cropping?(attachment)
-            attachment_instance = send(attachment_name)
-            self.send(:"attachment_field_name=",attachment)
+            attachment_instance = send(attachment)
             attachment_instance.recreate_versions!
-
-            reset_crop_attributes(attachment_name)
+            reset_crop_attributes(attachment)
           end
         end
 
@@ -59,7 +54,6 @@ module Carrierwave
         if model.cropping?(attachment)
           resize_to_limit(600, 600)
           manipulate! do |img|
-            attachment = model.send(:attachment_field_name)
             x = model.send("#{attachment}_crop_x").to_i
             y = model.send("#{attachment}_crop_y").to_i
             w = model.send("#{attachment}_crop_w").to_i
