@@ -75,9 +75,9 @@ For `Rails 4.x`, whitelist the cropping attributes - `fieldname_crop_x`, `fieldn
 
 For example:
 
-  def user_params
-    params.require(:user).permit(:avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h, ....)
-  end
+    def user_params
+      params.require(:user).permit(:avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h, ....)
+    end
 
 
 Or just add a crop action, set a route for it:

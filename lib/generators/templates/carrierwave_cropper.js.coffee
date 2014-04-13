@@ -5,7 +5,7 @@ class CarrierwaveCropper
   constructor: ->
     $('#<%= file_name %>_<%= attachment_name %>_cropbox').Jcrop
       aspectRatio: 1
-      setSelect: [0, 0, 600, 600]
+      setSelect: [0, 0, 200, 200]
       onSelect: @update
       onChange: @update
 
