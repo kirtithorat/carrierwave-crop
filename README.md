@@ -8,7 +8,7 @@ Carrierwave extension to crop uploaded images using Jcrop plugin with preview.
 
 Install the latest stable release:
 
-    $[sudo] gem install carrierwave
+    $[sudo] gem install carrierwave-crop
 
 In Rails, add it to your Gemfile:
 
