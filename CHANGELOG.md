@@ -10,9 +10,11 @@
    * Supports cropping of ONE attachment per model. Can be directly applied on original attachment if no versions exists.
    
          process crop: :avatar
+
    * Supports cropping of MULTIPLE versions of one attachment per model.
    * Updated the cropping coffeescript (created by rails generator) to incorporate the changes in form helpers.  
    * Added `version`, `width` and `height` options to form helpers `cropbox` and `previewbox`.
+   
          ##To render a specific version for cropping pass `version` option.
          <%= f.cropbox :avatar , version: :medium %>   
          <%= f.peviewbox :avatar , version: :medium %>  ## Pass the same version as specified in cropbox
@@ -20,7 +22,9 @@
          ## If you override ONE of width/height you MUST override both, otherwise passed option would be ignored.
          <%= f.cropbox :avatar, width: 550, height: 600 %>
          <%= f.previewbox :avatar, width: 200, height: 200 %>
+         
    * Added `width` and `height` arguments to proccessor method `crop`. 
+   
          ## If ONLY "thumb" version is to be cropped
          version :jumbo do
            resize_to_limit(600,600)
