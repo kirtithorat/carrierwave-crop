@@ -1,7 +1,7 @@
 jQuery ->
-  new CarrierwaveCropper()
+  new CarrierWaveCropper()
 
-class CarrierwaveCropper
+class CarrierWaveCropper
   constructor: ->
     $('#<%= file_name %>_<%= attachment_name %>_cropbox').Jcrop
       aspectRatio: 1
@@ -17,7 +17,7 @@ class CarrierwaveCropper
     @updatePreview(coords)
 
   updatePreview: (coords) =>
-    $('#avatar_crop_preview').css
+    $('#<%= file_name %>_<%= attachment_name %>_previewbox').css
       width: Math.round(100/coords.w * $('#<%= file_name %>_<%= attachment_name %>_cropbox').width()) + 'px'
       height: Math.round(100/coords.h * $('#<%= file_name %>_<%= attachment_name %>_cropbox').height()) + 'px'
       marginLeft: '-' + Math.round(100/coords.w * coords.x) + 'px'

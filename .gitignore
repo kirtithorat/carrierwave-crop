@@ -16,11 +16,3 @@ test/tmp
 test/version_tmp
 tmp
 .DS_Store
-.keep
-spec/dummy/.bundle
-spec/dummy/db/*.sqlite3
-spec/dummy/db/*.sqlite3-journal
-spec/dummy/log/*.log
-spec/dummy/tmp
-spec/dummy/public/uploads
-spec/dummy/Gemfile.lock

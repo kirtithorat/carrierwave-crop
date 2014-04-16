@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Carrierwave::Crop::ModelAdditions do
+describe CarrierWave::Crop::ModelAdditions do
 
 
   describe ".crop_uploaded" do
