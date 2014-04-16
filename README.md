@@ -143,14 +143,19 @@ If there are no versions, and original file is to be cropped directly then call 
         
 4. Supports cropping of MULTIPLE versions of one attachment per model.
 5. In form helpers, by default *original image* is rendered. To render a specific version for cropping pass `version` option. For example:
+
          <%= f.cropbox :avatar , version: :medium %>   
          <%= f.peviewbox :avatar , version: :medium %>  ## Pass the same version as specified in cropbox     
+         
 6. By default `previewbox` has `100x100` dimensions and `cropbox` defaults to the target geometry for the version.
    `width` and `height` can be specified for these form helpers. BUT If you override ONE of width/height you MUST override both, otherwise passed option would be ignored.
+
          <%= f.cropbox :avatar, width: 550, height: 600 %>
          <%= f.previewbox :avatar, width: 200, height: 200 %>
+         
 7. By default, `process crop: :avatar` will create the cropped version based on original image. 
    To resize the image to a particular dimension before cropping, pass two more arguments `width` and `height`.
+
          ## If ONLY "thumb" version is to be cropped
          version :jumbo do
            resize_to_limit(600,600)
