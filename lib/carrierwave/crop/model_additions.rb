@@ -58,7 +58,7 @@ module CarrierWave
 
     module Uploader
 
-      # Perfoems cropping.
+      # Performs cropping.
       #  
       #  On original version of attachment
       #  process crop: :avatar  

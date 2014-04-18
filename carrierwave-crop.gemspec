@@ -6,7 +6,7 @@ require 'carrierwave/crop/version'
 Gem::Specification.new do |spec|
   spec.name          = "carrierwave-crop"
   spec.version       = CarrierWave::Crop::VERSION
-  spec.authors       = ["kirtithorat"]
+  spec.authors       = ["Kirti Thorat"]
   spec.email         = ["kirti.brenz@gmail.com"]
   spec.summary       = %q{CarrierWave extension for cropping images with preview.}
   spec.description   = %q{CarrierWave extension to crop uploaded images using Jcrop plugin.}
