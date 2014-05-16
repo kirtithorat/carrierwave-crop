@@ -108,7 +108,7 @@ If there are no versions, and original file is to be cropped directly then call 
 
 ##NOTES
 
-1. Current Documentation is for **CarrierWave-Crop v0.1.1**
+1. Current Documentation is for **CarrierWave-Crop v0.1.2**
 2. Supports processors `rmagick` and `mini-magick`. 
    
    **To use `rmagick`, add it in your `Gemfile` as:**
