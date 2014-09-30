@@ -31,7 +31,8 @@ module CarrierWave
           !self.send(:"#{attachment}_crop_x").blank? &&
             !self.send(:"#{attachment}_crop_y").blank? &&
             !self.send(:"#{attachment}_crop_w").blank? &&
-            !self.send(:"#{attachment}_crop_h").blank?
+            !self.send(:"#{attachment}_crop_h").blank? &&
+            !self.send(attachment).blank?
         end
 
         # method_missing is used to respond to the model callback
@@ -59,12 +60,12 @@ module CarrierWave
     module Uploader
 
       # Performs cropping.
-      #  
-      #  On original version of attachment
-      #  process crop: :avatar  
       #
-      #  Resizes the original image to 600x600 and then performs cropping 
-      #  process crop: [:avatar, 600, 600]  
+      #  On original version of attachment
+      #  process crop: :avatar
+      #
+      #  Resizes the original image to 600x600 and then performs cropping
+      #  process crop: [:avatar, 600, 600]
       #
       # @param attachment [Symbol] Name of the attachment attribute to be cropped
       def crop(attachment, width = nil, height = nil)
