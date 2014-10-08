@@ -10,10 +10,10 @@ class CarrierWaveCropper
       onChange: @update
 
   update: (coords) =>
-    $('#<%= file_name %>_<%= attachment_name %>_crop_x').val(coords.x)
-    $('#<%= file_name %>_<%= attachment_name %>_crop_y').val(coords.y)
-    $('#<%= file_name %>_<%= attachment_name %>_crop_w').val(coords.w)
-    $('#<%= file_name %>_<%= attachment_name %>_crop_h').val(coords.h)
+    $('#<%= file_name %>_<%= attachment_name %>_cropbox_crop_x').val(coords.x)
+    $('#<%= file_name %>_<%= attachment_name %>_cropbox_crop_y').val(coords.y)
+    $('#<%= file_name %>_<%= attachment_name %>_cropbox_crop_w').val(coords.w)
+    $('#<%= file_name %>_<%= attachment_name %>_cropbox_crop_h').val(coords.h)
     @updatePreview(coords)
 
   updatePreview: (coords) =>
