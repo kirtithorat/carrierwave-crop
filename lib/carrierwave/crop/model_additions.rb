@@ -15,7 +15,7 @@ module CarrierWave
           [:crop_x, :crop_y, :crop_w, :crop_h].each do |a|
             attr_accessor :"#{attachment}_#{a}"
           end
-          after_update :"recreate_#{attachment}_versions"
+          after_save :"recreate_#{attachment}_versions"
 
         end
 
