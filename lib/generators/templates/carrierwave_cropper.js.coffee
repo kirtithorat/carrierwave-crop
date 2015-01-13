@@ -20,8 +20,8 @@ class CarrierWaveCropper
     $('#<%= file_name %>_<%= attachment_name %>_crop_h').val(coords.h)
 
   updatePreview: (coords) =>
-    zoom_factor_x = $('#<%= file_name %>_<%= attachment_name %>_previewbox').width()  / coords.w
-    zoom_factor_y = $('#<%= file_name %>_<%= attachment_name %>_previewbox').height() / coords.h
+    zoom_factor_x = $('#<%= file_name %>_<%= attachment_name %>_previewbox_wrapper').width()  / coords.w
+    zoom_factor_y = $('#<%= file_name %>_<%= attachment_name %>_previewbox_wrapper').height() / coords.h
     $('#<%= file_name %>_<%= attachment_name %>_previewbox').css
       width:  Math.round(zoom_factor_x * $('#<%= file_name %>_<%= attachment_name %>_cropbox').width())  + 'px'
       height: Math.round(zoom_factor_y * $('#<%= file_name %>_<%= attachment_name %>_cropbox').height()) + 'px'
