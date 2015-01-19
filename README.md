@@ -146,7 +146,7 @@ If there are no versions, and original file is to be cropped directly then call 
 
         <%= f.cropbox :avatar , version: :medium %>
   
-  Make sure you :avatar is responding to :width and :height by including this in your CarrierWave Uploader:
+  Make sure you `:avatar` is responding to `width` and `height` by including this in your CarrierWave Uploader:
 
         def width
           file ? ::Magick::Image::read(file.file).first.columns : 0
@@ -156,7 +156,7 @@ If there are no versions, and original file is to be cropped directly then call 
           file ? ::Magick::Image::read(file.file).first.rows : 0
         end
 
-  Checkout the [CarrierWave Wiki](https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-Get-image-dimensions) for getting 
+  Checkout the [CarrierWave Wiki](https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-Get-image-dimensions) if you are not using `CarrierWave::RMagick`.
 
 6. By default `previewbox` has `100x100` dimensions and `cropbox` defaults to the target geometry for the version.
    `width` and `height` can be specified for these form helpers. BUT If you override ONE of width/height you MUST override both, otherwise passed option would be ignored.

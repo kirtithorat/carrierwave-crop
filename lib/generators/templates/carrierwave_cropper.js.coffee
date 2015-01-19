@@ -14,12 +14,18 @@ class CarrierWaveCropper
     @updatePreview(coords)
 
   updateCoords: (coords) =>
-    w = $('#<%= file_name %>_<%= attachment_name %>_crop_original_w')
-    h = $('#<%= file_name %>_<%= attachment_name %>_crop_original_h')
+    w = $('#<%= file_name %>_<%= attachment_name %>_crop_original_w').val()
+    h = $('#<%= file_name %>_<%= attachment_name %>_crop_original_h').val()
 
-    zoom_factor_x = if w == 0 then 1 else (w / $('#<%= file_name %>_<%= attachment_name %>_cropbox').width())
-    zoom_factor_y = if h == 0 then 1 else (h / $('#<%= file_name %>_<%= attachment_name %>_cropbox').height())
+    if w == "0"
+      zoom_factor_x = 1 
+    else
+      zoom_factor_x = w / $('#<%= file_name %>_<%= attachment_name %>_cropbox').width()
 
+    if h == "0"
+      zoom_factor_y = 1
+    else
+      zoom_factor_y = h / $('#<%= file_name %>_<%= attachment_name %>_cropbox').height()
 
     $('#<%= file_name %>_<%= attachment_name %>_crop_x').val(Math.round(zoom_factor_x * coords.x))
     $('#<%= file_name %>_<%= attachment_name %>_crop_y').val(Math.round(zoom_factor_y * coords.y))
