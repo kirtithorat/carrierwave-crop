@@ -1,4 +1,4 @@
-jQuery ->
+$(window).load ->
   new CarrierWaveCropper()
 
 class CarrierWaveCropper
