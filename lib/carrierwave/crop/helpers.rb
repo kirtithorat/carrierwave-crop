@@ -54,11 +54,17 @@ module CarrierWave
 
         if(attachment_instance.class.ancestors.include? CarrierWave::Uploader::Base )
           ## Fixes Issue #1 : Colons in html id attributes with Namespaced Models
-          model_name = self.object.class.name.downcase.split("::").last 
+          model_name = self.object.class.name.downcase.split("::").last
           hidden_elements  = self.hidden_field(:"#{attachment}_crop_x", id: "#{model_name}_#{attachment}_crop_x")
           [:crop_y, :crop_w, :crop_h].each do |attribute|
             hidden_elements << self.hidden_field(:"#{attachment}_#{attribute}", id: "#{model_name}_#{attachment}_#{attribute}")
           end
+
+          original_w = attachment_instance.respond_to?(:width) ? attachment_instance.width : 0
+          original_h = attachment_instance.respond_to?(:height) ? attachment_instance.height : 0
+
+          hidden_elements << self.hidden_field(:"#{attachment}_crop_original_w", id: "#{model_name}_#{attachment}_crop_original_w", value: original_w)
+          hidden_elements << self.hidden_field(:"#{attachment}_crop_original_h", id: "#{model_name}_#{attachment}_crop_original_h", value: original_h)
 
           box =  @template.content_tag(:div, hidden_elements, style: "display:none")
 
