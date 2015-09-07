@@ -21,7 +21,7 @@ module CarrierWave
 
         if(self.object.send(attachment).class.ancestors.include? CarrierWave::Uploader::Base )
           ## Fixes Issue #1 : Colons in html id attributes with Namespaced Models
-          model_name = self.object.class.name.downcase.split("::").last 
+          model_name = self.object.class.name.downcase.split("::").last
           width, height = 100, 100
           if(opts[:width] && opts[:height])
             width, height = opts[:width].round, opts[:height].round
@@ -40,24 +40,49 @@ module CarrierWave
       # Form helper to render the actual cropping box of an attachment.
       # Loads the actual image. Cropbox has no constraints on dimensions, image is renedred at full size.
       # Box size can be restricted by setting the :width and :height option. If you override one of width/height you must override both.
-      # By default original image is rendered. Specific version can be specified by passing version option
+      # By default original image is rendered. Specific version can be specified by passing version option.
       #
       #   cropbox :avatar
       #   cropbox :avatar, width: 550, height: 600
       #   cropbox :avatar, version: :medium
+      #   cropbox :avatar, data: {width: 400, height: 600}
+      #
+      # Also you can set :only option. It will crop only this version.
+      #   cropbox :avatar, only: :ipad_main
+      #
+      #   version :ipad_main do
+      #     process crop: :image
+      #   end
       #
       # @param attachment [Symbol] attachment name
       # @param opts [Hash] specify version or width and height options
       def cropbox(attachment, opts={})
         attachment = attachment.to_sym
         attachment_instance = self.object.send(attachment)
+        data_options = opts[:data]
+
 
         if(attachment_instance.class.ancestors.include? CarrierWave::Uploader::Base )
           ## Fixes Issue #1 : Colons in html id attributes with Namespaced Models
-          model_name = self.object.class.name.downcase.split("::").last 
+          model_name = self.object.class.name.downcase.split("::").last
           hidden_elements  = self.hidden_field(:"#{attachment}_crop_x", id: "#{model_name}_#{attachment}_crop_x")
+
+          #only option
+          if opts[:only].is_a? Array
+            opts[:only].each_with_index do |item, idx|
+              hidden_elements << self.hidden_field(:"#{attachment}_only_version",
+                                                   id: "#{model_name}_#{attachment}_only_version_#{idx}",
+                                                   value: item, :multiple => true)
+            end
+          else
+            hidden_elements << self.hidden_field(:"#{attachment}_only_version",
+                                                 id: "#{model_name}_#{attachment}_only_version",
+                                                 value: opts[:only])
+          end if opts[:only].present?
+
           [:crop_y, :crop_w, :crop_h].each do |attribute|
-            hidden_elements << self.hidden_field(:"#{attachment}_#{attribute}", id: "#{model_name}_#{attachment}_#{attribute}")
+            hidden_elements << self.hidden_field(:"#{attachment}_#{attribute}",
+                                                 id: "#{model_name}_#{attachment}_#{attribute}")
           end
 
           box =  @template.content_tag(:div, hidden_elements, style: "display:none")
@@ -72,7 +97,7 @@ module CarrierWave
           else
             img = self.object.send(attachment).url
           end
-          crop_image = @template.image_tag(img, :id => "#{model_name}_#{attachment}_cropbox")
+          crop_image = @template.image_tag(img, id: "#{model_name}_#{attachment}_cropbox", data: data_options )
           box << @template.content_tag(:div, crop_image, wrapper_attributes)
         end
       end
