@@ -52,7 +52,12 @@ module CarrierWave
 
             attachment_instance = send(attachment)
             if only_version
-              attachment_instance.recreate_versions!(only_version)
+              if only_version.is_a? Array
+                only_version.map!(&:to_sym)
+                attachment_instance.recreate_versions!(*only_version)
+              else
+                attachment_instance.recreate_versions!(only_version.to_sym)
+              end
             else
               attachment_instance.recreate_versions!
             end
