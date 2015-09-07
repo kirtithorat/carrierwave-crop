@@ -23,7 +23,7 @@ CarrierWave extension to crop uploaded images using Jcrop plugin with preview.
           process crop: :image
         end
 
-        #Set crop versions for example in _ipad.html.erb partial
+        #Set crop versions for example in _andtoid.html.erb partial
         <%= f.cropbox :avatar, only: :android_main %>
 
 
@@ -215,7 +215,7 @@ If there are no versions, and original file is to be cropped directly then call 
           process crop: :image
         end
 
-        #Set crop versions for example in _ipad.html.erb partial
+        #Set crop versions for example in _android.html.erb partial
         <%= f.cropbox :avatar, only: :android_main %>
 
 
