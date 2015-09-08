@@ -48,16 +48,13 @@ module CarrierWave
         def crop_image(attachment)
           if cropping?(attachment)
             only_version = self.send("#{attachment}_only_version")
-            only_version = only_version.to_sym if only_version.is_a? String
+            only_version = [only_version] if only_version.is_a? String
 
             attachment_instance = send(attachment)
-            if only_version
-              if only_version.is_a? Array
-                only_version.map!(&:to_sym)
-                attachment_instance.recreate_versions!(*only_version)
-              else
-                attachment_instance.recreate_versions!(only_version.to_sym)
-              end
+
+            if only_version.is_a? Array
+              only_version.map!(&:to_sym)
+              attachment_instance.recreate_versions!(*only_version)
             else
               attachment_instance.recreate_versions!
             end
