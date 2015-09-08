@@ -4,6 +4,38 @@
 
 CarrierWave extension to crop uploaded images using Jcrop plugin with preview.
 
+
+## This is a fork of gem.
+### Two changes from main version(PR is sent)
+
+8. You can set versions where need to crop.
+
+        #Version for ipad
+        version :ipad_main do
+          process crop: :image
+        end
+
+        #Set crop versions for example in _ipad.html.erb partial
+        <%= f.cropbox :avatar, only: :ipad_main %>
+
+        #Version for android
+        version :android_main do
+          process crop: :image
+        end
+
+        #Set crop versions for example in _andtoid.html.erb partial
+        <%= f.cropbox :avatar, only: :android_main %>
+
+
+        #or both
+        <%= f.cropbox :avatar, only: [:ipad_main, :android_main] %>
+
+9. If you need to html data attributes you can set data option
+
+        <%= f.cropbox :avatar, data: {width: 1024, height: 768} %>
+
+        #and you can use it in javascript
+
 ## Installation
 
 Install the latest stable release:
@@ -167,6 +199,35 @@ If there are no versions, and original file is to be cropped directly then call 
           process crop: [:avatar, 600, 600]
           resize_to_limit(100,100)
         end
+
+8. You can set versions where need to crop.
+
+        #Version for ipad
+        version :ipad_main do
+          process crop: :image
+        end
+
+        #Set crop versions for example in _ipad.html.erb partial
+        <%= f.cropbox :avatar, only: :ipad_main %>
+
+        #Version for android
+        version :android_main do
+          process crop: :image
+        end
+
+        #Set crop versions for example in _android.html.erb partial
+        <%= f.cropbox :avatar, only: :android_main %>
+
+
+        #or both
+        <%= f.cropbox :avatar, only: [:ipad_main, :android_main] %>
+
+9. If you need to html data attributes you can set data option
+
+        <%= f.cropbox :avatar, data: {width: 1024, height: 768} %>
+
+        #and you can use it in javascript
+
 
 ### Credits and resources
 * [CarrierWave](https://github.com/carrierwaveuploader/carrierwave)
